@@ -195,24 +195,12 @@ CMyMatrix CMyMatrix::inverse() const {
             std::swap(inv[i], inv[pivot_row]);
         }
 
-        /*
-        std::cout << "swap max row with current if bigger is found" << std::endl;
-        copy.print();
-        inv.print();
-        */
-
         //divide max value to reduce to 1
         double pivot = copy[i][i];
         for (int j = 0; j < m_cols; j++) {
             copy[i][j] /= pivot;
             inv[i][j] /= pivot;
         }
-
-        /*
-        std::cout << "divide max value to reduce to 1" << std::endl;
-        copy.print();
-        inv.print();
-        */
 
         //subtract rows below current row for 0 triangle / steps
         for (int j = i + 1; j < m_rows; j++) {
@@ -222,11 +210,6 @@ CMyMatrix CMyMatrix::inverse() const {
                 inv[j][k] -= lambda * inv[i][k];
             }
         }
-        /*
-        std::cout << "subtract rows below current row for 0 triangle / steps" << std::endl;
-        copy.print();
-        inv.print();
-        */
     }
 
     //subtract rows above current row for 0 triangle
@@ -246,7 +229,7 @@ CMyMatrix CMyMatrix::inverse() const {
 //nach meinen bisherigen implementierung wuerde es mehr sinn machen, dass hier fuer die vector klasse zu implementieren
 
 CMyMatrix CMyMatrix::jacobi(CMyVector x, CMyVector (*f)(const CMyVector &x)) const {
-    //should be 10e-4, but is inaccurate
+    //should be 1e-4, but is inaccurate
     const double h = 10e-8;
     CMyMatrix result(m_rows, m_cols);
     CMyVector f0 = f(x);
