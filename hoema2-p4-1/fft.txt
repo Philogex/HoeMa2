@@ -1,0 +1,64 @@
+//i hate my life, but most importantly myself
+void fft(std::vector<CKomplex> &data)
+{
+    const size_t N = data.size();
+    if (N <= 1) return;
+
+    //divide
+	std::vector<CKomplex> even;
+    std::vector<CKomplex> odd;
+	bool c = true;
+	for(CKomplex n : data) {
+		if(c) {
+			even.push_back(n);
+		}
+		else {
+			odd.push_back(n);
+		}
+		c = !c;
+	}
+    
+    //conquer
+    fft(even);
+    fft(odd);
+
+    //combine
+	//double norm = 1 / std::sqrt(2);
+    for (size_t n = 0; n < N / 2; n++)
+    {
+        CKomplex e(-2 * pi * n / N);
+		e = e * odd[n];
+        data[n] = even[n] + e; //even
+        data[n + N / 2] = even[n] - e; //odd
+    }
+}
+
+std::vector<CKomplex> ifft(std::vector<CKomplex> data)
+{
+    // Conjugate the complex numbers
+	std::vector<CKomplex> result = data;
+    for (CKomplex& x : result) {
+        x = CKomplex(x.get_re(), -x.get_im());
+    }
+
+    // Perform the forward FFT
+    fft(result);
+
+    // Conjugate the complex numbers again
+    for (CKomplex& x : result) {
+        x = CKomplex(x.get_re(), -x.get_im());
+    }
+
+    // Scale the numbers
+    double norm = 1.0 / data.size();
+    for (CKomplex& x : result) {
+        x = CKomplex(x.get_re() * norm, x.get_im() * norm);
+    }
+	return result;
+}
+
+std::vector<CKomplex> fast_fourier_transform(const std::vector<CKomplex> data) {
+	std::vector<CKomplex> result(data);
+	fft(result);
+	return result;
+}

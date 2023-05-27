@@ -25,7 +25,6 @@ CMyVector C_DGLSolver::ableitungen(CMyVector y, double x) {
 //starting conditions and h input are missing
 
 CMyVector C_DGLSolver::euler(double x_start, double x_end, int steps, CMyVector y_start) {
-    //double h = 2e-2;
     double h = (x_end - x_start) / steps; 
     //double h = 0.3;
     double x = x_start;
@@ -46,7 +45,6 @@ CMyVector C_DGLSolver::euler(double x_start, double x_end, int steps, CMyVector 
 }
 
 CMyVector C_DGLSolver::heun(double x_start, double x_end, int steps, CMyVector y_start) {
-    //double h = 2e-2;
     double h = (x_end - x_start) / steps;
     //double h = 0.3;
     double x = x_start;
@@ -64,6 +62,6 @@ CMyVector C_DGLSolver::heun(double x_start, double x_end, int steps, CMyVector y
 }
 
 /*
-Mathematically, you can think of the vector returned by f_DGL_System as representing the instantaneous rates of change of each dependent variable at a given point. 
+Mathematically, you can think of the vector returned as representing the instantaneous rates of change of each dependent variable at a given point. 
 By evaluating the right-hand side functions for each dependent variable, you obtain a vector that describes how the variables are changing with respect to x at that point.
 */

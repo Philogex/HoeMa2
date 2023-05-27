@@ -155,6 +155,7 @@ int main() {
     //setting rounding
     std::cout << std::setprecision(6) << std::fixed;
 
+    /*
     //init test vector
     double components1[] = {0.5, 1.5, 1};
     CMyVector test_vector1(components1, 3);
@@ -214,6 +215,8 @@ int main() {
     CMyVector test_vector8_2 = test_vector8_1.minimize(quadratic_deviation_1);
     test_vector8_2.print();
 
+    */
+
     //dgl_solver test
     std::cout << std::endl << "dgl_solver test" << std::endl;
 
@@ -272,16 +275,8 @@ int main() {
     test_dgl3_3.euler(2, 2.2, 2, test_vector10_3).print();
 
     /*
-    idk
     //P3_4
-    std::cout << std::endl << "P3_4" << std::endl;
-    C_DGLSolver test_dgl3_4(test_function15);
-    //lambda, u
-    CMyVector test_vector10_4(new double[2] {1, 1}, 2);
-    test_dgl3_4.euler(1, 2, 10000, test_vector10_4).print();
-    //data
-    CMyVector test_vector10_5(new double[3]{0, 0, 0}, 3);
-    test_vector10_5.minimize(quadratic_deviation_2, 0.01).print();
+    eueler to approximate graph and minimize on resulting vector
     */
 
     system("pause");
