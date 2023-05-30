@@ -60,14 +60,14 @@ std::vector<CKomplex> fourier_transform(const std::vector<CKomplex>& data, bool 
     int N = data.size();
     std::vector<CKomplex> result(N);
 
-    double norm = 1.0 / std::sqrt(N);
+    const double norm = 1.0 / std::sqrt(N);
 
     for (int k = 0; k < N; k++) {
         double sum_re = 0;
         double sum_im = 0;
 
         for (int n = 0; n < N; n++) {
-            CKomplex angle(2 * pi * k * n / N * (invert ? -1 : 1));
+            CKomplex angle(2 * pi * k * n / N * (invert ? 1 : -1));
 			sum_re += data[n].get_re() * angle.get_re() - data[n].get_im() * angle.get_im();
 			sum_im += data[n].get_im() * angle.get_re() + data[n].get_re() * angle.get_im();
         }
@@ -134,8 +134,9 @@ int main() {
 	std::cout << std::setw(50) << std::left << "max. abweichung fuer epsilon = 1 bei datei 2: " << std::right << deviation(o_2, fourier_transform(werte_einlesen("2-1"), true)) << std::endl << std::endl;
 	*/
 
-	std::vector<CKomplex> f_3 = fourier_transform(werte_einlesen("guitar.txt"));
+	//std::vector<CKomplex> f_3 = fourier_transform(werte_einlesen("guitar.txt"));
 	
+	/*
 	werte_ausgeben("guitar_f_1000.txt", f_3, 1000);
 	werte_ausgeben("guitar_f_100.txt", f_3, 100);
 	werte_ausgeben("guitar_f_10.txt", f_3, 10);
@@ -147,6 +148,24 @@ int main() {
 	werte_ausgeben("guitar_10.txt", fourier_transform(werte_einlesen("guitar_f_10.txt"), true));
 	werte_ausgeben("guitar_1.txt", fourier_transform(werte_einlesen("guitar_f_1.txt"), true));
 	werte_ausgeben("guitar_0.txt", fourier_transform(werte_einlesen("guitar_f_0.txt"), true));
+	*/
+
+
+	//std::vector<CKomplex> p4;
+	//std::vector<std::vector<double>> input = {{0, 2}, {-2, 1}, {-3, -2}, {3, 2}};
+	//std::vector<std::vector<double>> input = {{-2, 0}, {0, 0}, {1, 0}, {2, 0}, {2, 0}, {0, 0}};
+	/*
+	for(size_t i = 0; i < input.size(); i++) {
+		CKomplex values(input[i][0], input[i][1]);
+		p4.push_back(values);
+	}
+	*/
+	/*
+	p4.push_back(CKomplex(-3, 0));
+	p4.push_back(CKomplex(2, 0));
+	p4.push_back(CKomplex(1, -2));
+	*/
+	//print_complex_vector(fourier_transform(p4, true));
 
     system("pause");
     return 0;
