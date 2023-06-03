@@ -7,7 +7,10 @@ int monte_carlo(int r, int k, int n, int N, bool typ) {
     CLotto s(k, n, 0);
     //Spieler 1
     if(typ) {
-        int values[7] = {1, 2, 3, 4, 5, 6, 7};
+        int values[k];
+        for(int i = 0; i < k; i++) {
+            values[i] = i + 1;
+        }
         s.set_tippzettel(values);
         for(int i = 0; i < N; i++) {
             if(s.ziehung() == r) { r_correct++; }
@@ -62,10 +65,10 @@ int main() {
 
     system("pause");
 
-    int r = 5;
-    int k = 7;
-    int n = 49;
-    for(int N : {10, 100, 1000, 10000, 100000, 1000000}) {
+    int r = 3;
+    int k = 8;
+    int n = 37;
+    for(int N : {10, 100, 1000, 10000, 100000}) {
         std::cout << "r = " << r << ", k = " << k << ", n = " << n << ", N = " << N << std::endl;
         std::cout << "Spieler 1: " << std::endl;
         std::cout << monte_carlo(r, k, n, N, true) << std::endl;
