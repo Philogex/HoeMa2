@@ -71,10 +71,10 @@ int main() {
     for(int N : {10, 100, 1000, 10000, 100000}) {
         std::cout << "r = " << r << ", k = " << k << ", n = " << n << ", N = " << N << std::endl;
         std::cout << "Spieler 1: " << std::endl;
-        std::cout << monte_carlo(r, k, n, N, true) << std::endl;
+        std::cout << static_cast<double>(monte_carlo(r, k, n, N, true))/N << std::endl;
 
         std::cout << "Spieler 2: " << std::endl;
-        std::cout << monte_carlo(r, k, n, N, false) << std::endl;
+        std::cout << static_cast<double>(monte_carlo(r, k, n, N, false))/N << std::endl;
     }
 
     system("pause");
