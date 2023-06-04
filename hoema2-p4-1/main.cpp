@@ -72,7 +72,7 @@ std::vector<CKomplex> fourier_transform(const std::vector<CKomplex>& data, bool 
 			sum_im += data[n].get_im() * angle.get_re() + data[n].get_re() * angle.get_im();
         }
 
-        result[k] = CKomplex(sum_re * norm, sum_im * norm);
+        result[k] = CKomplex(sum_re, sum_im) * norm;
     }
 
     return result;
@@ -89,7 +89,7 @@ double deviation(std::vector<CKomplex> original, std::vector<CKomplex> compariso
 
     // Calculate the maximum deviation
     for (size_t i = 0; i < original.size(); ++i) {
-        double cur_deviation = std::abs(original[i].abs() - comparison[i].abs());
+        double cur_deviation = (original[i] - comparison[i]).abs();
         if (cur_deviation > deviation) {
             deviation = cur_deviation;
         }

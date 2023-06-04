@@ -34,7 +34,7 @@ CKomplex CKomplex::operator*(const double other) {
 }
 
 double CKomplex::abs() {
-    return std::sqrt(std::pow(this->re, 2) + std::pow(this->im, 2));
+    return std::sqrt(this->re * this->re + this->im * this->im);
 }
 
 void CKomplex::print() {
